@@ -12,7 +12,7 @@ body, html {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1920px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -20,6 +20,8 @@ body, html {
 header {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 10;
 }
 
 nav {
@@ -28,6 +30,8 @@ nav {
   align-items: center;
   height: 70px;
   padding: 0 20px;
+  position: relative;
+  z-index: 11;
 }
 
 .logo {
@@ -39,6 +43,7 @@ nav {
 .nav-links {
   display: flex;
   list-style-type: none;
+  position: relative;
 }
 
 .nav-links li {
@@ -64,6 +69,24 @@ nav {
   border-radius: 38px;
 }
 
+.hover-container {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(89, 89, 89, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.nav-links:hover ~ .hover-container {
+  opacity: 1;
+  visibility: visible;
+}
 
 .dropdown-content {
   display: none;
@@ -71,7 +94,7 @@ nav {
   background-color: #fff;
   min-width: 600px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  z-index: 3;
+  z-index: 12;
   left: 50%;
   transform: translateX(-40%);
   top: 100%;
@@ -79,6 +102,7 @@ nav {
   overflow: hidden;
   max-height: 400px;
   white-space: normal;
+  border-radius: 5px;
 }
 
 .dropdown:hover .dropdown-content {
@@ -154,16 +178,37 @@ nav {
   }
 }
 
-
 .hero {
-  background-image: url('Gemini_Generated_Image_4x4bsk4x4bsk4x4b (1).jpeg');
-  background-size: cover;
-  background-position: center;
   padding: 100px 0;
   text-align: center;
   position: relative;
   overflow: hidden;
   height: 100vh;
+}
+
+.image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.hero-image:first-child {
+  opacity: 1;
 }
 
 .hero::before {
@@ -173,11 +218,12 @@ nav {
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 1;
 }
 
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 @keyframes slideUp {
@@ -259,11 +305,10 @@ nav {
   letter-spacing: 3px;
   background-color: #37c8ef;
   color: hsl(0, 0%, 100%);
-  box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
+  box-shadow: 0px 8px 20px rgba(55, 200, 239, 0.5);
   transform: translateY(10px);
   transition: 100ms;
 }
-
 
 .icon {
   margin-right: 5px;
@@ -303,3 +348,37 @@ nav {
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z'/%3E%3C/svg%3E");
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z'/%3E%3C/svg%3E");
 }
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.3s;
+}
+
+.arrow:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.left-arrow {
+  left: 20px;
+}
+
+.right-arrow {
+  right: 20px;
+}
+
+.arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
